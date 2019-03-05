@@ -28,6 +28,7 @@ public class WebViewActivity extends AppCompatActivity {
         if(intent.getExtras()!=null){
             barCode= intent.getStringExtra("product_id");
             loadWebView(barCode);
+
         }
 
         btnRetry.setOnClickListener(new View.OnClickListener() {

@@ -18,15 +18,35 @@
             android:id="@+id/btnScan"
             android:onClick="onScanClick"/>
 
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OR"
-            />
-    </LinearLayout>
+            android:layout_below="@id/btnScan"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="OR" />
 
+        <Button
+            android:id="@+id/btnManual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/manualSearch"
+            android:text="Search Manual"
+            android:onClick="onManualClick"/>
+
+        <EditText
+            android:id="@+id/manualSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_below="@id/textView2"
+            android:text="" />
+
+
+
+
+    </RelativeLayout>
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.tirthraj.smartscanner.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,13 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.tirthraj.smartscanner.R;
+import com.example.tirthraj.smartscanner.controller.WebViewActivity;
 
 
 public class BarcodeFragment extends Fragment   {
     private static final String TAG= "BarcodeFragment";
     private ScanRequest scanRequest ;
+    private String manual;
+    EditText manualSearch;
 
     public BarcodeFragment(){
 
@@ -43,6 +49,22 @@ public class BarcodeFragment extends Fragment   {
             @Override
             public void onClick(View v) {
                 scanRequest.scanBarcode();
+
+            }
+        });
+        manualSearch = view.findViewById(R.id.manualSearch);
+        Button btnManual = view.findViewById(R.id.btnManual);
+        btnManual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                manual = manualSearch.getText().toString();
+                // Toast.makeText(getContext(), "Saved"+manual, Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(getContext(), WebViewActivity.class);
+                intent.putExtra("product_id", manual);
+                startActivity(intent);
+
 
             }
         });
