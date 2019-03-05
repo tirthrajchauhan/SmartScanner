@@ -1,49 +1,101 @@
 package com.example.tirthraj.smartscanner;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.support.design.widget.TabLayout;
+
+import com.google.android.gms.vision.barcode.Barcode;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
 
     private Button openCamera;
-    public static final int RC_CAMERA_PERMISSION = 1000;
+    private Context context ;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
+    public static final String BARCODE_KEY = "BARCODE";
+    private Barcode barcodeResult;
+    private final String TAG = MainActivity.class.getSimpleName() ;
+    private final int RC_CAMERA_PERMISSION = 1001;
+    private ItemScanned itemScanned ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
+        viewPager = findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
+        tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
-        openCamera = (Button) findViewById(R.id.openCamera);
-        openCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
 
-                // Checking for camera permission
-                int permissionCheck = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA);
 
-                // Condition to take action
-                if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-                    //Open camera
-                    Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                    startActivityForResult(intent, 0);
-                }
-                else {
-                    //Request camera permission from system
-                    ActivityCompat.requestPermissions(MainActivity.this,
-                            new String[]{Manifest.permission.CAMERA},
-                            RC_CAMERA_PERMISSION);
-                }
-            }
-        });
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new BarcodeFragment(), "Barcode Scanner");
+        adapter.addFragment(new ScannedItems(), "Scan Item");
+        viewPager.setAdapter(adapter);
+    }
+
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
+    public interface  ItemScanned{
+        void itemUpdated();
     }
 }
