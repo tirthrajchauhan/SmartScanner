@@ -1,18 +1,12 @@
-package com.example.tirthraj.smartscanner;
+package com.example.tirthraj.smartscanner.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.Menu;
-
-
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+
+
+import com.example.tirthraj.smartscanner.R;
 
 public class SplashScreen extends AppCompatActivity {
 
