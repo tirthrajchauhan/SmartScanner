@@ -3,6 +3,7 @@ package com.example.tirthraj.smartscanner.controller;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
     private final String TAG = MainActivity.class.getSimpleName() ;
     private final int MY_PERMISSION_REQUEST_CAMERA = 1001;
     private ItemScanned itemScanned ;
-
+    private String br;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,9 +137,14 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
 
             }
         });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.detail, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                Toast.makeText(MainActivity.this, "Not Saved", Toast.LENGTH_SHORT).show();
+
+               // Toast.makeText(MainActivity.this, "Saved"+barcodeResult.rawValue, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context, WebViewActivity.class);
+                intent.putExtra("product_id",barcodeResult.rawValue);
+                context.startActivity(intent);
+
             }
         });
 

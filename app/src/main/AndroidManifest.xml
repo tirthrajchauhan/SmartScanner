@@ -18,6 +18,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.MainActivity"></activity>
+        <activity
+            android:name=".controller.WebViewActivity"
+            android:label="Barcode Search">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controller.MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>
