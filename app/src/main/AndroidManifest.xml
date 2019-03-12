@@ -27,7 +27,9 @@
                 android:value=".controller.MainActivity" />
         </activity>
         <activity android:name=".controller.GenerateBarcodeActivity" />
-        <activity android:name=".controller.GenerateQRActivity"></activity>
+        <activity android:name=".controller.GenerateQRActivity"
+            android:label="QR Generator"
+            android:parentActivityName=".controller.MainActivity"></activity>
     </application>
 
 </manifest>
