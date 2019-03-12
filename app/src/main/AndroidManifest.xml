@@ -14,10 +14,11 @@
         <activity android:name=".controller.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.MainActivity"></activity>
+        <activity android:name=".controller.MainActivity" />
         <activity
             android:name=".controller.WebViewActivity"
             android:label="Barcode Search">
@@ -25,7 +26,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controller.MainActivity" />
         </activity>
-
+        <activity android:name=".controller.GenerateBarcodeActivity" />
+        <activity android:name=".controller.GenerateQRActivity"></activity>
     </application>
 
 </manifest>

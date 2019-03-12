@@ -17,6 +17,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 import android.support.design.widget.TabLayout;
@@ -63,6 +65,28 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
 
     }
 
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.generateBarcodeMenu:
+                Intent intent = new Intent(MainActivity.this, GenerateBarcodeActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.generateQRMenu:
+                Intent intent1 = new Intent(MainActivity.this, GenerateQRActivity.class);
+                startActivity(intent1);
+                break;
+        }
+        return false;
+    }
 
     @Override
     protected void onResume() {
