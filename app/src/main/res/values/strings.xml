@@ -25,5 +25,11 @@
     <string name="date_example">10 Nov 2017 12.12 AM</string>
     <string name="app_name">Smart Scanner</string>
 
+    <string name="type_prompt">Choose a barcode type</string>
+    <string-array name="type_values">
+        <item>CODE_39</item>
+        <item>CODE_128</item>
+        <item>EAN_8</item>
+    </string-array>
 
 </resources>

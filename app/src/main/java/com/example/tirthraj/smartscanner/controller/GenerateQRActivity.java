@@ -44,7 +44,7 @@ public class GenerateQRActivity extends AppCompatActivity {
                } catch (WriterException e){
                    e.printStackTrace();
                }
-               }
+            }
         }
     });
 

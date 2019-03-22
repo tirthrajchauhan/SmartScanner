@@ -26,10 +26,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controller.MainActivity" />
         </activity>
-        <activity android:name=".controller.GenerateBarcodeActivity" />
+        <activity android:name=".controller.GenerateBarcodeActivity"
+                    android:parentActivityName=".controller.MainActivity"
+                    android:label="Barcode Generator"/>
         <activity android:name=".controller.GenerateQRActivity"
-            android:label="QR Generator"
-            android:parentActivityName=".controller.MainActivity"></activity>
+                    android:parentActivityName=".controller.MainActivity"
+                    android:label="QR Generator"></activity>
     </application>
 
 </manifest>

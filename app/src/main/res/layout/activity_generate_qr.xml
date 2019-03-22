@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
+    android:layout_marginVertical="10dp"
     tools:context=".controller.GenerateQRActivity">
 
 
@@ -14,14 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:hint="Type here to Generate QR..." />
-
-    <ImageView
-        android:id="@+id/qrcode"
-        android:layout_width="match_parent"
-        android:layout_height="259dp"
-        android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/ic_qrcode" />
-
     <Button
         android:id="@+id/btnqrgenerate"
         android:layout_width="match_parent"
@@ -29,9 +22,15 @@
         android:layout_marginTop="20dp"
         android:background="@color/colorPrimary"
         android:text="Generate"
-        android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textSize="24sp" />
+        android:textSize="18dp" />
+
+    <ImageView
+        android:id="@+id/qrcode"
+        android:layout_width="match_parent"
+        android:layout_height="259dp"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/ic_qrcode" />
 
 
 </LinearLayout>
