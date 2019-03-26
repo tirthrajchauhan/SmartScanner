@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.tirthraj.smartscanner.R;
-import com.example.tirthraj.smartscanner.network.Utils;
+import com.example.tirthraj.smartscanner.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 

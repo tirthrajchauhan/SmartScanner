@@ -164,16 +164,8 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
                 .setTitle(R.string.dialog_title);
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-//                DatabaseHelper databaseHelper = new DatabaseHelper(context);
-//                databaseHelper.addProduct(new Product(scanContent,currentTime,currentDate));
-
-               // databaseReference = new DatabaseReference(context);
-
-
-                Log.d("result","scan: "+scanContent+ "date"+currentDate+"time"+currentTime);
-                Product product = new Product(scanContent,currentTime,currentDate);
-                databaseReference.push().setValue(product);
-
+                DatabaseHelper databaseHelper = new DatabaseHelper(context);
+                databaseHelper.addProduct(new Product(scanContent,currentTime,currentDate));
                 Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                 viewPager.setCurrentItem(1);
 

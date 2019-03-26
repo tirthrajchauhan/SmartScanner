@@ -1,4 +1,4 @@
-package com.example.tirthraj.smartscanner.network;
+package com.example.tirthraj.smartscanner.utils;
 
         import android.content.Context;
         import android.net.ConnectivityManager;
