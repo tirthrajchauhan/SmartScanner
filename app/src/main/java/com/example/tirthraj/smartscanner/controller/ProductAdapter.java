@@ -67,7 +67,6 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holder.layoutRightButtons.setBackgroundColor(context.getResources().getColor(R.color.card_right_purple));
         }
 
-
         holder.layoutSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +75,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 context.startActivity(intent);
             }
         });
+
         holder.layoutCopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,18 +85,27 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
         });
 
+        holder.buttonShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSharingDialog(product.getProductBarcodeNo());
+            }
+        });
+
     }
 
-
+    private void openSharingDialog(String result) {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBodyText = "Scanned Result: "+ result;
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
+        context.startActivity(Intent.createChooser(sharingIntent, "Share"));
+    }
 
     @Override
     public int getItemViewType(int position) {
-
             return  PRODUCT_ITEM_VIEW_TYPE;
-
-
     }
-
 
 
     @Override
@@ -108,7 +117,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private LinearLayout layoutRightButtons ;
         private RelativeLayout layoutCopy , layoutSearch ;
         private TextView txtScanResult , txtScanNo , txtScanTime ;
-        private Button btnShare ;
+        private Button buttonShare ;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -118,9 +127,11 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             txtScanNo = itemView.findViewById(R.id.txt_scan_no);
             txtScanResult = itemView.findViewById(R.id.txt_scan_result);
             txtScanTime = itemView.findViewById(R.id.txt_date_time);
+            buttonShare = itemView.findViewById(R.id.buttonShare);
 
         }
     }
+
 
 
 }

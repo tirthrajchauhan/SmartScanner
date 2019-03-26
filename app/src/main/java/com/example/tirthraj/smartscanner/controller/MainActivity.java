@@ -57,8 +57,6 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
     private final int MY_PERMISSION_REQUEST_CAMERA = 1001;
     private ItemScanned itemScanned ;
     private String br;
-    FirebaseDatabase firebaseDatabase;
-   DatabaseReference databaseReference;
 
    // mDatabase = FirebaseDatabase.getInstance().getReference("path");
     @Override
@@ -70,10 +68,6 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
         setupViewPager(viewPager);
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("ScannerDB");
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
