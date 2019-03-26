@@ -31,6 +31,8 @@ import com.example.tirthraj.smartscanner.R;
 import com.example.tirthraj.smartscanner.database.DatabaseHelper;
 import com.example.tirthraj.smartscanner.model.Product;
 import com.google.android.gms.vision.barcode.Barcode;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -40,7 +42,9 @@ import java.util.List;
 import java.util.Locale;
 
 
+
 public class MainActivity extends AppCompatActivity implements BarcodeFragment.ScanRequest  {
+
 
 
     private Button openCamera;
@@ -53,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
     private final int MY_PERMISSION_REQUEST_CAMERA = 1001;
     private ItemScanned itemScanned ;
     private String br;
+    FirebaseDatabase firebaseDatabase;
+   DatabaseReference databaseReference;
+
+   // mDatabase = FirebaseDatabase.getInstance().getReference("path");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
         setupViewPager(viewPager);
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("ScannerDB");
 
     }
 
@@ -153,8 +164,16 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
                 .setTitle(R.string.dialog_title);
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                DatabaseHelper databaseHelper = new DatabaseHelper(context);
-                databaseHelper.addProduct(new Product(scanContent,currentTime,currentDate));
+//                DatabaseHelper databaseHelper = new DatabaseHelper(context);
+//                databaseHelper.addProduct(new Product(scanContent,currentTime,currentDate));
+
+               // databaseReference = new DatabaseReference(context);
+
+
+                Log.d("result","scan: "+scanContent+ "date"+currentDate+"time"+currentTime);
+                Product product = new Product(scanContent,currentTime,currentDate);
+                databaseReference.push().setValue(product);
+
                 Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                 viewPager.setCurrentItem(1);
 
@@ -256,4 +275,6 @@ public class MainActivity extends AppCompatActivity implements BarcodeFragment.S
     public interface  ItemScanned{
         void itemUpdated();
     }
+
+
 }

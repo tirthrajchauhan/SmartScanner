@@ -38,8 +38,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int arg1, int arg2) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
-
-
         onCreate(db);
 
     }

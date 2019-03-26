@@ -1,10 +1,10 @@
 package com.example.tirthraj.smartscanner.network;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+        import android.content.Context;
+        import android.net.ConnectivityManager;
+        import android.net.NetworkInfo;
 
-import java.net.URI;
+        import java.net.URI;
 
 
 public class Utils {
