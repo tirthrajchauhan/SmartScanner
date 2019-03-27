@@ -2,11 +2,14 @@ package com.example.tirthraj.smartscanner.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import com.example.tirthraj.smartscanner.R;
 import com.example.tirthraj.smartscanner.controller.MainActivity;
 import com.example.tirthraj.smartscanner.controller.ProductAdapter;
 import com.example.tirthraj.smartscanner.database.DatabaseHelper;
+import com.example.tirthraj.smartscanner.model.Product;
 
 
 import java.util.ArrayList;
@@ -53,6 +57,21 @@ public class ScannedItems extends Fragment  implements MainActivity.ItemScanned 
             }
         });
 
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT)
+        {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+                int p = viewHolder.getAdapterPosition();
+//                Log.d("*******",""+p);
+                removeItem(p);
+            }
+        }).attachToRecyclerView(mRecyclerView);
+
 
         loadProductList();
         return view;
@@ -79,7 +98,14 @@ public class ScannedItems extends Fragment  implements MainActivity.ItemScanned 
 
     }
 
+private void removeItem(int position){
+    final Product product = (Product)productArrayList.get(position);
+    String productNo = product.getProductNo();
+//    Log.d("*******",""+product.getProductNo());
+    db.deleteData(productNo);
 
+
+    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
