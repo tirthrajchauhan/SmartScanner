@@ -2,6 +2,7 @@ package com.example.tirthraj.smartscanner.controller;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 
 public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
     private Context context;
+    private Cursor mCursor;
     private ArrayList<Object> productArrayList;
     private static final int PRODUCT_ITEM_VIEW_TYPE = 0 ;
     public ProductAdapter(Context context, ArrayList<Object> productArrayList) {
@@ -50,11 +52,10 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 setProductView(productViewHolder , position);
                 break ;
 
-
         }
     }
 
-    private void setProductView(ProductViewHolder holder, final  int position) {
+    private void setProductView(ProductViewHolder holder, final int position) {
         final Product product = (Product)productArrayList.get(position);
         holder.txtScanResult.setText(product.getProductBarcodeNo());
         holder.txtScanTime.setText(product.getScanDate()+" "+product.getScanTime());

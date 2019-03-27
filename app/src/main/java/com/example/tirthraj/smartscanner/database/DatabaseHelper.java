@@ -53,6 +53,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public Integer deleteData (String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+       return db.delete(TABLE_PRODUCT, "id = ?", new String[] {id});
+    }
+
 
     public ArrayList<Object> getAllProduct() {
         ArrayList<Object> productArrayList = new ArrayList<Object>();
