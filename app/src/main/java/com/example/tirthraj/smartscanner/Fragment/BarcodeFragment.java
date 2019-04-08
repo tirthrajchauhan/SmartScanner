@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+//import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
+
 import com.example.tirthraj.smartscanner.R;
 import com.example.tirthraj.smartscanner.controller.WebViewActivity;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 
 public class BarcodeFragment extends Fragment   {
@@ -22,7 +27,9 @@ public class BarcodeFragment extends Fragment   {
     private ScanRequest scanRequest ;
     private String manual;
     EditText manualSearch;
-
+    Button btnManual;
+    FloatingActionMenu materialDesignFAM;
+//    FloatingActionButton floatingActionButton1, floatingActionButton2;
     public BarcodeFragment(){
 
     }
@@ -44,16 +51,60 @@ public class BarcodeFragment extends Fragment   {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button btnScan = view.findViewById(R.id.btnScan);
-        btnScan.setOnClickListener(new View.OnClickListener() {
-            @Override
+
+//        FloatingActionButton fab = view.findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                scanRequest.scanBarcode();
+//
+//            }
+//        });
+
+
+        materialDesignFAM = view.findViewById(R.id.fabmenu);
+        FloatingActionButton floatingActionButton1 = view.findViewById(R.id.fab1);
+        FloatingActionButton   floatingActionButton2 =  view.findViewById(R.id.fab2);
+
+        floatingActionButton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //TODO something when floating action menu first item clicked
+
                 scanRequest.scanBarcode();
+
 
             }
         });
+        floatingActionButton2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //TODO something when floating action menu second item clicked
+
+                if(manualSearch.getVisibility() == View.INVISIBLE && btnManual.getVisibility()== View.INVISIBLE)
+                {
+                    manualSearch.setVisibility(View.VISIBLE );
+                    btnManual.setVisibility(View.VISIBLE);
+                }
+//                else {
+//                    manualSearch.setVisibility(View.VISIBLE);
+//                    btnManual.setVisibility(View.INVISIBLE);
+//
+//                }
+
+
+
+            }
+        });
+
+//        Button btnScan = view.findViewById(R.id.btnScan);
+//        btnScan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                scanRequest.scanBarcode();
+//
+//            }
+//        });
         manualSearch = view.findViewById(R.id.manualSearch);
-        Button btnManual = view.findViewById(R.id.btnManual);
+        btnManual = view.findViewById(R.id.btnManual);
         btnManual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

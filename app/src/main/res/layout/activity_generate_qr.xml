@@ -13,14 +13,14 @@
     <EditText
         android:id="@+id/qrtext"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:hint="Type here to Generate QR..." />
     <Button
         android:id="@+id/btnqrgenerate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorAccent"
         android:text="Generate"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="18dp" />
