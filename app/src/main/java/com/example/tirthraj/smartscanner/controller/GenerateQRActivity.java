@@ -39,6 +39,7 @@ public class GenerateQRActivity extends AppCompatActivity {
     private EditText qrtext;
     private ImageView qrcode;
     BitmapDrawable draw;
+    File dir,sdCard;
      Bitmap bm;
     String textqr;
     public static final int RC_STORAGE_PERMISSION = 1000;
@@ -55,7 +56,6 @@ public class GenerateQRActivity extends AppCompatActivity {
 
 
         btnSave = (Button)findViewById(R.id.btn_save);
-
 
 
         btngenerate.setOnClickListener(new View.OnClickListener() {
@@ -92,8 +92,8 @@ public class GenerateQRActivity extends AppCompatActivity {
 
 
                     FileOutputStream outStream = null;
-                    File sdCard = Environment.getExternalStorageDirectory();
-                    File dir = new File(sdCard.getAbsolutePath() + "/qrCode");
+                    sdCard = Environment.getExternalStorageDirectory();
+                     dir = new File(sdCard.getAbsolutePath() + "/qrCode");
                     dir.mkdirs();
                     String fileName = String.format("%s.jpg", textqr);
                     File outFile = new File(dir, fileName);
