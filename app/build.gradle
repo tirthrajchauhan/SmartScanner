@@ -37,7 +37,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-base:11.6.0'
     implementation 'com.google.android.gms:play-services-vision:11.6.0'
     implementation 'com.google.zxing:core:3.2.1'
-    implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'\
+    implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+    implementation 'com.squareup.picasso:picasso:2.4.0'
+
 
 
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

@@ -95,18 +95,14 @@
         android:orientation="vertical">
 
 
-        <EditText
+        <android.support.v7.widget.AppCompatEditText
             android:id="@+id/manualSearch"
-            android:layout_width="171dp"
-            android:layout_height="42dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text=""
-            android:visibility="invisible"
-            fab:layout_constraintBottom_toBottomOf="parent"
-            fab:layout_constraintTop_toTopOf="parent"
-            fab:layout_constraintVertical_bias="0.705"
-            tools:layout_editor_absoluteX="0dp" />
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="5dp"
+            android:hint="Enter your barcode"
+            android:inputType="number"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/btnManual"
@@ -116,8 +112,8 @@
             android:background="@color/colorAccent"
             android:onClick="onManualClick"
             android:text="Search Manual"
-            android:visibility="visible"
             android:textColor="#FFFFFF"
+            android:visibility="invisible"
             tools:layout_editor_absoluteX="3dp"
             tools:layout_editor_absoluteY="414dp" />
 

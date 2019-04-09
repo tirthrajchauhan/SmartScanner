@@ -95,6 +95,8 @@
 
     </LinearLayout>
 
+
+
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/inputText"
         android:layout_width="match_parent"
@@ -116,6 +118,19 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="150dp"
         android:scaleType="centerInside" />
+
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="save"
+        android:background="@color/colorAccent"
+        android:textSize="18dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"/>
+
+
+
 </LinearLayout>

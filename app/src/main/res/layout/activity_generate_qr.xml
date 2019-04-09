@@ -24,6 +24,8 @@
         android:text="Generate"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="18dp" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/qrcode"
@@ -31,6 +33,14 @@
         android:layout_height="259dp"
         android:layout_marginTop="20dp"
         app:srcCompat="@drawable/ic_qrcode" />
+
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="save"
+        android:background="@color/colorAccent"/>
 
 
 </LinearLayout>
