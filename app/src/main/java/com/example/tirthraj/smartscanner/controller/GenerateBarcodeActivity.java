@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatSeekBar;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -74,7 +75,16 @@ public class GenerateBarcodeActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
+                inputTextEdit.setText("");
                 barcodeType = bType.getSelectedItem().toString();
+
+                if (barcodeType.equals("EAN_8")) {
+                    inputTextEdit.setInputType(InputType.TYPE_CLASS_NUMBER);
+                } else if (barcodeType.equals("CODE_39")) {
+                    inputTextEdit.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                } else {
+                    inputTextEdit.setInputType(InputType.TYPE_CLASS_TEXT);
+                }
                 // Toast.makeText(getApplicationContext(), barcodeType, Toast.LENGTH_SHORT).show();
             }
             @Override
@@ -89,6 +99,7 @@ public class GenerateBarcodeActivity extends AppCompatActivity {
             @Override
                 public void onClick(View v) {
 
+
                 inputString = inputTextEdit.getText().toString();
                 if (TextUtils.isEmpty(inputString))
                 {
@@ -102,6 +113,10 @@ public class GenerateBarcodeActivity extends AppCompatActivity {
                     }
                     else
                     {
+                        if (barcodeType.equals("CODE_39")) {
+                        inputString = inputTextEdit.getText().toString().toUpperCase();
+                        }
+
                         int width = 400 + 200 * widthSeekbar.getProgress();
                         int height = 200 + 200 * heightSeekbar.getProgress();
                         BarcodeGeneratorHelper helper =
@@ -116,6 +131,10 @@ public class GenerateBarcodeActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     }
+                }
+                if(btnSave.getVisibility()== View.INVISIBLE && !(TextUtils.isEmpty(inputString)))
+                {
+                    btnSave.setVisibility(View.VISIBLE);
                 }
             }
         });

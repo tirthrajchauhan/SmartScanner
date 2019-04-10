@@ -61,6 +61,8 @@ public class GenerateQRActivity extends AppCompatActivity {
         btngenerate.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+
              textqr = qrtext.getText().toString();
             if(textqr != null && !textqr.isEmpty()){
                try {
@@ -73,6 +75,12 @@ public class GenerateQRActivity extends AppCompatActivity {
                    e.printStackTrace();
                }
             }
+            if( btnSave.getVisibility()== View.INVISIBLE && textqr != null && !textqr.isEmpty())
+            {
+                btnSave.setVisibility(View.VISIBLE);
+            }
+
+
         }
     });
 
